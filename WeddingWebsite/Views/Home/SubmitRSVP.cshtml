@@ -1,0 +1,18 @@
+﻿@model WeddingWebsite.Models.RSVP
+
+<div class="jumbotron">
+    <h2>RSVP Received!</h2>
+
+    <p class="lead">Thank you for replying, @Model.Name!</p>
+
+    @if (Model.NumberOfPeople > 0)
+    {
+        <p>We look forward to seeing you at the wedding, and will be in touch with additional information soon!</p>
+    }
+    else
+    {
+        <p>We're sorry you won't be able to make it, but we really appreciate your messages and look forward to the next time we can meet!</p>
+    }
+    
+</div>
+<p>Did you need to @Html.ActionLink("Update your RSVP?", "ResubmitRSVP", new { id = Model.Id })</p>

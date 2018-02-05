@@ -1,0 +1,7 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1>RSVP</h1>
+<h2>Thanks again @Context.Request.Cookies["rsvp_name"], for submitting your response.</h2>
+<p>Did you need to @Html.ActionLink("resubmit your RSVP?", "ResubmitRSVP", new { id = Context.Request.Cookies["rsvp_id"] })</p>

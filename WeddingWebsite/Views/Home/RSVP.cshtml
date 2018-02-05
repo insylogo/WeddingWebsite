@@ -1,0 +1,109 @@
+﻿@model WeddingWebsite.Models.RSVP
+
+<div class="rsvpForm">
+    <h2>RSVP for our wedding!</h2>
+
+    @using (Ajax.BeginForm("SubmitRSVP", new AjaxOptions() { HttpMethod = "POST", InsertionMode = InsertionMode.Replace, LoadingElementId = "loadingBar", UpdateTargetId = "bodyContent", OnBegin = "rsvpSubmitted()", OnFailure = "rsvpFailed()" }))
+    {
+        @Html.AntiForgeryToken()
+        @Html.HiddenFor(model => model.Id)
+        <div class="form-horizontal">
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Phone, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Message, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.TextAreaFor(model => model.Message, 5, 40, new { htmlAttributes = new { @class = "form-control"} })
+                    @Html.ValidationMessageFor(model => model.Message, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.Label("willattend", "Will you be attending?", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <label>@Html.RadioButton("willattend", true, Model?.NumberOfPeople > 0, new { onclick = "toggleRsvp(true)" }) I / We will attend</label>
+                </div>
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-10">
+                    <label>@Html.RadioButton("willattend", false, Model?.NumberOfPeople == 0, new { onclick = "toggleRsvp(false)" }) I / We are unable to attend</label>
+                </div>
+            </div>
+
+
+            <div id="rsvp-details" style="display: @(Model?.NumberOfPeople>0 ? "block":"none")">
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.NumberOfPeople, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @Html.EditorFor(model => model.NumberOfPeople, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.NumberOfPeople, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FoodPreference, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-2">
+                        @Html.EnumDropDownListFor(model => model.FoodPreference, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.FoodPreference, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="progress" id="loadingBar" style="display:none">
+                    <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" aria-valuenow="99" aria-valuemin="0" aria-valuemax="100" style="width: 100%; margin-left:auto;margin-right:auto;"></div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <button class="btn btn-default" id="submitButton">Send RSVP</button>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<div>
+    @Html.ActionLink("Wedding Home Page", "Index")
+</div>
+<script type="text/javascript">
+    function toggleRsvp(willAttend) {
+        if (willAttend) {
+            $("#rsvp-details").slideDown();
+        }
+        else {
+            $("#@Html.IdFor(m => m.NumberOfPeople)").val(0);
+            $("#rsvp-details").slideUp();
+        }
+    }
+    function rsvpFailed() {
+        $("#submitButton").removeAttr('disabled');
+    }
+    
+    function rsvpSubmitted() {
+        $("#submitButton").attr('disabled', 'disabled');
+    }
+</script>

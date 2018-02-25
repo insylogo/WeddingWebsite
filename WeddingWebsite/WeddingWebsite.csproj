@@ -169,6 +169,8 @@
     <Content Include="Content\Images\feather_left_sm.png" />
     <Content Include="Content\Images\feather_right_sm.png" />
     <Content Include="Content\Images\waterfall.png" />
+    <Content Include="Content\peacock.png" />
+    <Content Include="Content\save-the-date.jpeg" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -193,7 +195,9 @@
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rob and Dhruti's Wedding</title>
+    <link href="https://fonts.googleapis.com/css?family=Kalam|Rasa" rel="stylesheet">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 
@@ -11,7 +12,7 @@
     @Scripts.Render("~/bundles/bootstrap")
 </head>
 <body>
-    <div class="navbar navbar-inverse navbar-fixed-top">
+    @*<div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,13 +29,15 @@
                 </ul>
             </div>
         </div>
-    </div>
+    </div>*@
     <div id="bodyContent" class="container body-content">
         @RenderBody()
+        <div style="clear:both;text-align:center;">
+            <footer>
+                <p>&copy; 2018 Rob Gibson &amp; Dhruti Trivedi</p>
+            </footer>
+        </div>
     </div>
-    <footer>
-        <p>&copy; 2018 Rob Gibson &amp; Dhruti Trivedi</p>
-    </footer>
     @RenderSection("scripts", required: false)
 </body>
 </html>

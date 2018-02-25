@@ -1,18 +1,40 @@
 ﻿body {
-    padding-top: 50px;
+    padding-top: 180px;
     padding-bottom: 20px;
-    background-image: url('Images/waterfall.png');
-    background-position: top center;
+    /*background-color: rgb(77, 177, 221);*/
+    background-image: url('/Content/mandala.png'), url('/Content/mandala.png');
+    background-repeat: repeat-y, repeat-x;
+    background-size: 350px;
+    background-position-y:-175px ,-175px;
+    
+    /*background-image: url('Images/waterfall.png');
+    background-position: top center;*/
 }
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
-   background-color: rgba(244,244,244,.8)
+    background-color: rgba(41, 233, 198, 0.3);
+    font-family: 'Rasa', serif;
+}
+p, .btn {
+    font-family: 'Kalam', cursive;
+}
+h2 {
+    font-size: 48pt;
+    margin-top:0px;
+    font-family: 'Rasa', serif;
+}
+h1 {
+    padding-top :10px;
+    margin-bottom: 0px;
+    font-family: 'Kalam', cursive;
 }
 .jumbotron {
-    background-color: rgba(155,155,155,0.2);
+    background-color:inherit;
+    margin-top: 30px;
+    font-family: 'Kalam', cursive;
 }
 
 /* Override the default bootstrap behavior where horizontal description lists 
@@ -27,4 +49,15 @@ input,
 select,
 textarea {
     max-width: 280px;
+}
+
+.rsvpForm {
+    width: 800px;
+    font-size: 16pt;
+}
+.rsvpForm .form-group {
+    width: 600px;
+    margin-left:auto;
+    margin-right:auto; 
+
 }
